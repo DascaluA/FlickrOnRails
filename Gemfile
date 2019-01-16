@@ -20,7 +20,6 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'devise'
 gem 'omniauth'
-gem 'will_paginate'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
