@@ -1,0 +1,30 @@
+<div class='row justify-content-center'>
+  <h1 class='typography-display-3 text-center'>Sign Up</h1>
+  <br>
+</div>
+<div class='row justify-content-center'>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-group" style="width: 70rem;">
+    <%= f.input :email, 
+    required: true,
+    autofocus: true ,
+    input_html: { autocomplete: "email", class: 'form-control' }%>
+    <%= f.input :password,
+    required: true,
+    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+    input_html: { autocomplete: "new-password", class: 'form-control' } %>
+    <%= f.input :password_confirmation,
+    required: true,
+    input_html: { autocomplete: "new-password", class: 'form-control' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up", class: 'btn-block' %>
+  </div>
+  <% end %>
+</div>
+<div class='row justify-content-center'>
+  <%= render "users/shared/links" %>
+</div>

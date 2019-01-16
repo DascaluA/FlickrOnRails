@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+<div class='row justify-content-center'>
+	<p>
+		<strong>Title:</strong>
+		<%= @picture.title %>
+	</p>
+</div>
+<div class='row justify-content-center'>
+	<p>
+		<strong>Description:</strong>
+		<%= @picture.description %>
+	</p>
+</div>
+<div class='row justify-content-center'>
+	<p>
+		<strong>Score:</strong>
+		<%= @picture.score %>
+	</p>
+</div>
+<div class='row justify-content-center'>
+	<p>
+		<strong> Image: </strong>
+		<%= image_tag @picture.picture rescue 'no picture' %>
+	</p>
+</div>
+<div class='row justify-content-center'>
+	<p>
+		<strong> Tags: </strong>
+		<ul>
+			<% @picture.categories.each do |tag| %>
+			<li> <%= tag.name %> </li>
+			<% end %>
+		</ul>
+	</p>
+</div>
+<% @picture.comments.each do |comment| %>
+<div class='row justify-content-center'>
+	<p>
+		<strong> <%= User.find(comment.owner).email %></strong>
+		<%= comment.content %>
+	</p>
+</div>
+<% end %>
+<% if user_signed_in? %>
+<div class='row justify-content-center'>
+	<div class='form-group'>
+		<%= form_for(@comment) do |f| %>
+		<%= f.hidden_field :picture, value: @picture.id %>
+		<%= f.text_area :content, class: 'form-control' %>
+		<%= f.submit 'Create Comment', class: 'btn btn-secondary btn-block'%>
+		<% end %>
+	</div>
+</div>
+<% end %>
+<% if admin_signed_in? %>
+<div class='row justify-content-center'>
+	<%= link_to 'Edit', edit_picture_path(@picture) %>
+</div>
+<% end %>
+<div class='row justify-content-center'>
+	<%= link_to 'Back', pictures_path %>
+</div>

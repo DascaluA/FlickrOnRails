@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<div class='row justify-content-center'>
+	<p>
+		<strong>Title:</strong>
+		<%= @album.title %>
+	</p>
+</div>
+<div class='row justify-content-center'>
+	<% @album.pictures.each_slice(3) do |pics| %>
+	<div class='row' style='height: 10rem'>
+		<% pics.each do |pic| %>
+		<%= image_tag pic.picture, style: 'height: 100%' rescue 'no fucking picture attached'%>
+		<% end %>
+	</div>
+	<% end %>
+</div>
+<div class='row justify-content-center'>
+	<%= link_to 'Edit', edit_user_album_path(@album) %> |
+	<%= link_to 'Back', user_albums_path %>
+</div>

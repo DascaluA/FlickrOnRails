@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<div class='row justify-content-center'>
+	<p>
+		<strong>Name:</strong>
+		<%= @category.name %>
+	</p>
+</div>
+<div class='row justify-content-center'>
+	<% @category.pictures.each_slice(3) do |pics| %>
+	<div class='row' style='height: 10rem'>
+		<% pics.each do |pic| %>
+		<%= image_tag pic.picture, style: 'height: 100%' rescue 'no fucking picture attached'%>
+		<% end %>
+	</div>
+	<% end %>
+</div>
+<div class='row justify-content-center'>
+	<%= link_to 'Edit', edit_category_path(@category) %> |
+	<%= link_to 'Back', categories_path %>
+</div>

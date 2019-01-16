@@ -1,0 +1,16 @@
+<div class='col'>
+	<% Picture.top.each_slice(4) do |pics| %>
+	<div class='row' style='height: 10rem'>
+		<%pics.each do |pic| %>
+		<div class="card" style="width:20rem; height: 30rem;">
+			<%= image_tag pic.picture, class: 'card-img-top' rescue 'well-that-happened' %>
+			<div class="card-body">
+				<p classs ="card-text">
+					<%= pic.description rescue 'no-description' %>
+				</p>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<%end%>
+</div>

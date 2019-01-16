@@ -1,0 +1,33 @@
+<div class='col d-flex justify-content-center'>
+  <div class='form-group w-50'>
+    <%= form_with(model: album,url: user_albums_path,local: true) do |form| %>
+    <% if album.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(album.errors.count, "error") %> prohibited this album from being saved:</h2>
+
+      <ul>
+        <% album.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+    <% @pictures.each do |t| %>
+    <div class="form-check">
+      <%= form.label t.title, class: 'form-check-label' %>
+      <%= form.check_box "pictures[#{t.title}]", class: 'form-check-input',style: 'margin-left: 0rem' %>
+    </div>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit 'Submit', class: 'btn btn-block btn-info' %>
+    </div>
+    <% end %>
+  </div>
+</div>
